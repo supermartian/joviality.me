@@ -18,7 +18,8 @@
     "jquery-mobile-bower": "~1.4.2",
     "angular-ui-router": "~0.2.11",
     "bootstrap": "~3.2.0",
-    "underscore": "~1.7.0"
+    "underscore": "~1.7.0",
+    "jquery-form": "~3.46.0"
   },
   "authors": [
     "Yuzhong Wen <wyz2014@vt.edu>"
