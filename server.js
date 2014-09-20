@@ -5,7 +5,8 @@
  * Distributed under terms of the MIT license.
  */
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    express = require('express');
 
 mongoose.connect('mongodb://localhost/projectGT');
 

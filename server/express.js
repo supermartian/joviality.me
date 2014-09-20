@@ -8,8 +8,11 @@
 var flash = require('connect-flash'),
     busboy = require('connect-busboy'),
     session = require('express-session'),
+    MongoStore = require('connect-mongo')(session),
     cookieParser = require('cookie-parser'),
-    route = require('./route/route.js');
+    bodyParser = require('body-parser'),
+    expressValidator = require('express-validator'),
+    route = require('./route/route.js'),
     path = require('path'),
     express = require('express');
 
@@ -17,8 +20,19 @@ module.exports = function () {
     var app = express();
 
     app.use(cookieParser());
+    app.use(expressValidator());
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
+    app.use(bodyParser.json());
 
     app.use(flash());
+    app.use(session({
+        secret: 'deeeeep-shit',
+        store: new MongoStore({
+            db : 'projectGT',
+        })
+    }));
 
     // Busboy
     app.use(busboy());
