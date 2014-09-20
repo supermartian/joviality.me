@@ -1,6 +1,6 @@
 {
   "name": "projectGT",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "homepage": "https://github.com/supermartian/projectGT",
   "license": "MIT",
   "ignore": [
@@ -15,8 +15,12 @@
     "angular-cookies": "~1.2.25",
     "angular-file-upload": "~1.1.1",
     "angular-resource": "~1.2.25",
+    "jquery-mobile-bower": "~1.4.2",
     "angular-ui-router": "~0.2.11",
     "bootstrap": "~3.2.0",
     "underscore": "~1.7.0"
-  }
+  },
+  "authors": [
+    "Yuzhong Wen <wyz2014@vt.edu>"
+  ]
 }
