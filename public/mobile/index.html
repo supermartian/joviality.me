@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Joviality - Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" href="/bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.2.css" />
+        <script src="/bower_components/jquery/jquery.min.js"></script>
+        <script src="/bower_components/jquery-mobile-bower/js/jquery.mobile-1.4.2.min.js"></script>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+    <div data-role="page" id="page-login">
+        <div data-role="content">
+            <div class="ui-grid-solo">
+                <img src="/img/header-01.png" class="banner" />
+            </div>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="email" value="">
+            <label for="password">Password:</label>
+            <input type="text" name="password" id="password" value="">
+            <a id="mobileLogin" href="#" class="ui-btn ui-icon-arrow-r ui-btn-icon-right">Login</a>
+            <a id="register" href="#page-register" class="ui-btn ui-icon-user ui-btn-icon-right">New User</a>
+        </div>
+    </div>
+    <div data-role="page" id="page-register">
+        <div data-role="content">
+            <div class="ui-grid-solo">
+                <img src="/img/header-01.png" class="banner" />
+            </div>
+            <label for="email">Email:</label>
+            <input type="text" name="email" id="regemail" value="">
+            <label for="password">Password:</label>
+            <input type="text" name="password" id="regpassword" value="">
+            <label for="name">Nickname:</label>
+            <input type="text" name="name" id="regname" value="">
+            <a id="registerdone" href="#" class="ui-btn ui-icon-user ui-btn-icon-right">Take Me To Joviality</a>
+        </div>
+    </div>
+    <div data-role="page" id="page-home">
+        <div data-role="content">
+            <div class="ui-grid-solo tree-area">
+            </div>
+            <form id="faceForm" enctype="multipart/form-data" method="post" action="face">
+                <input type="file" id="take-picture" accept="image/*" capture="camera" name="pic">
+            </form>
+            <a id="triggerCamera" href="#" class="ui-btn ui-icon-camera ui-btn-icon-right">Take Me To Heaven</a>
+        </div>
+    </div>
+    </body>
+    <script src="/js/app.js"></script>
+</html>

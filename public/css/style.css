@@ -1,0 +1,21 @@
+/*
+ * style.css
+ * Copyright (C) 2014 Yuzhong Wen
+ *
+ * Distributed under terms of the MIT license.
+ */
+
+.banner {
+    width: 100%;
+    padding-top: 10px;
+}
+
+.tree-area {
+    height: 300px;
+}
+
+.hidden {
+    width: 1px;
+    height: 1px;
+    visibility: hidden;
+}
