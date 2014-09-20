@@ -7,6 +7,11 @@
 
 'use strict';
 
+require('./../models/users');
+require('./../models/face');
+var mongoose = require('mongoose');
+var Face = mongoose.model('Face');
+var User = mongoose.model('User');
 var grid = require('gridfs-stream'),
     mongoose = require('mongoose'),
     facepp = require('./facepp');
@@ -18,6 +23,7 @@ var http = require('http');
 var fs = require('fs');
 
 exports.upload = function(req, res) {
+    var user = req.session.user;
     req.pipe(req.busboy);
     req.busboy.on('file', function(fieldname, file, filename){
         console.log(fieldname);
@@ -32,9 +38,54 @@ exports.upload = function(req, res) {
                     return;
                 }
 
-                res.setHeader('Content-Type', "application/json");
+                var resjson = '';
                 faceresp.on('data', function(chunk) {
-                    res.send(chunk);
+                    resjson += chunk;
+                });
+                faceresp.on('end', function() {
+                    var result = JSON.parse(resjson);
+                    if (!result) {
+                        res.status(500).jsonp({error: 'deeeep shit'});
+                        return;
+                    }
+
+                    if (result.face.length === 0) {
+                        res.status(500).jsonp({error: 'No faces'});
+                        return;
+                    }
+
+                    var newFace = new Face();
+                    newFace.user = user._id;
+                    newFace.fileId = file._id;
+                    newFace.smileRate = 0;
+                    for (var i = 0; i < result.face.length; i++) {
+                        console.log(result.face[i]);
+                        newFace.smileRate += parseFloat(result.face[i].attribute.smiling.value);
+                    }
+
+                    newFace.save(function(err) {
+                        if (err) {
+                            res.status(500).jsonp({error: 'deeeep shit'});
+                            return;
+                        }
+
+                        User.findById(user._id, function(err, u) {
+                            if (err) {
+                                res.status(500).jsonp({error: 'deeeep shit'});
+                                return;
+                            }
+
+                            u.faces.push(newFace._id);
+                            u.save(function(err) {
+                                if (err) {
+                                    res.status(500).jsonp({error: 'deeeep shit'});
+                                    return;
+                                }
+
+                                res.status(200).jsonp(newFace);
+                            });
+                        });
+                    });
                 });
             });
         });

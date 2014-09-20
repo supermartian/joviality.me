@@ -28,7 +28,7 @@ module.exports = function () {
 
     app.use(flash());
     app.use(session({
-        secret: 'deeeeep-shit',
+        secret: 'connect.sid',
         store: new MongoStore({
             db : 'projectGT',
         })
