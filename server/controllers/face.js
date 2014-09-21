@@ -44,7 +44,7 @@ exports.upload = function(req, res) {
                 });
                 faceresp.on('end', function() {
                     var result = JSON.parse(resjson);
-                    if (!result) {
+                    if (result === undefined) {
                         res.status(500).jsonp({error: 'deeeep shit'});
                         return;
                     }
