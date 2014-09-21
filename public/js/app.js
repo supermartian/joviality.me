@@ -43,9 +43,9 @@ $(document).on('pagebeforeshow', function() {
     var register = function(mobile) {
         var nextjump;
         if (mobile) {
-            nextjump = '/index.html';
+            nextjump = '#page-home';
         } else {
-            nextjump = '/index.html';
+            nextjump = '#page-home';
         }
 
         $.ajax({
@@ -67,10 +67,27 @@ $(document).on('pagebeforeshow', function() {
         register(true);
     });
 
+    var file;
     $('#take-picture').closest('div.ui-input-text').hide();
-    $('input[name=pic]').change(function(event) {
-        var file = event.target.files[0];
-        var fd = new FormData();
+    $('#take-picture').change(function(event) {
+        var files = event.target.files;
+        var data = new FormData();
+        $.each(files, function(key, value) {
+            data.append(key, value);
+        });
+        $.mobile.loading('show');
+        $.ajax({
+            type: 'POST',
+            url: '/face',
+            data: data,
+            dataType: 'json',
+            processData: false, // Don't process the files
+            contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+            success: function(data, textStatus, jqXHR) {
+                $.mobile.loading('hide');
+                alert(data.smileRate);
+            }
+        });
     });
 
     $('#triggerCamera').click(function(ev) {

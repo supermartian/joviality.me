@@ -12,10 +12,20 @@
 
 .tree-area {
     height: 300px;
+    width: 100%;
+}
+
+.tree-canvas {
+    height: 100%;
+    width: 100%;
 }
 
 .hidden {
     width: 1px;
     height: 1px;
     visibility: hidden;
+}
+
+.footer-btn {
+    width: 80%;
 }

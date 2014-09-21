@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Joviality - Login</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
         <link rel="stylesheet" href="/bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.2.css" />
         <script src="/bower_components/jquery/jquery.min.js"></script>
         <script src="/bower_components/jquery-mobile-bower/js/jquery.mobile-1.4.2.min.js"></script>
@@ -39,14 +39,32 @@
     </div>
     <div data-role="page" id="page-home">
         <div data-role="content">
+<div class="ui-grid-solo" style="position: relative;height:400px">
+ <canvas id="layer1" width="400px" height="600px" class="tree-canvas"
+   style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+ <canvas id="layer2" width="400px" height="600px" class="tree-canvas"
+   style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+</div>
+            <input type="file" id="take-picture" accept="image/*" capture="camera" name="pic">
+        </div>
+        <div data-role="footer" data-position="fixed" class="ui-bar">
+            <a id="triggerCamera" href="#" class="ui-btn ui-icon-camera ui-btn-icon-right footer-btn">Give Me a Smile!</a>
+        </div>
+    </div>
+    <div data-role="page" id="page-uploading">
+        <div data-role="content">
+            <a id="triggerCamera" href="#" class="ui-btn ui-icon-camera ui-btn-icon-right">Take Me To Heaven</a>
+        </div>
+    </div>
+    <div data-role="page" id="page-preview">
+        <div data-role="content">
             <div class="ui-grid-solo tree-area">
             </div>
-            <form id="faceForm" enctype="multipart/form-data" method="post" action="face">
-                <input type="file" id="take-picture" accept="image/*" capture="camera" name="pic">
-            </form>
             <a id="triggerCamera" href="#" class="ui-btn ui-icon-camera ui-btn-icon-right">Take Me To Heaven</a>
         </div>
     </div>
     </body>
     <script src="/js/app.js"></script>
+    <script src="/js/tree.js"></script>
+    <script src="/js/draw.js"></script>
 </html>
