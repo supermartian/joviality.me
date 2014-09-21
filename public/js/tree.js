@@ -94,7 +94,6 @@ Branch.prototype.growLeaf = function(root) {
     var newLeaf = new Leaf();
     newLeaf.x = root.end.x;
     newLeaf.y = root.end.y;
-    newLeaf.style = Math.floor(Math.random() * 10) % 3;
     root.leaves.push(newLeaf);
 }
 

@@ -10,6 +10,7 @@
 require('./../models/users');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var populateQuery = [{path:'faces'}];
 
 exports.login = function(req, res) {
     var user = req.body;
@@ -19,7 +20,7 @@ exports.login = function(req, res) {
         return;
     }
 
-    User.findOne({email: user.email, password: user.password}).exec(function(err, user) {
+    User.findOne({email: user.email, password: user.password}).populate(populateQuery).exec(function(err, user) {
         if (err) {
             return res.jsonp(500, {error: 'Error in finding users'});
         }
@@ -57,8 +58,6 @@ exports.register = function(req, res) {
         });
     });
 };
-
-var populateQuery = [{path:'faces'}];
 
 exports.getOne = function(req, res) {
     var userId = req.params.userId;

@@ -7,7 +7,11 @@
         <link rel="stylesheet" href="/bower_components/jquery-mobile-bower/css/jquery.mobile-1.4.2.css" />
         <script src="/bower_components/jquery/jquery.min.js"></script>
         <script src="/bower_components/jquery-mobile-bower/js/jquery.mobile-1.4.2.min.js"></script>
+        <script src="/bower_components/swipebox/src/js/jquery.swipebox.min.js"></script>
+        <script src="/bower_components/jquery.cookie/jquery.cookie.js"></script>
+        <script src="/js/galleria/galleria-1.4.2.js"></script>
         <link rel="stylesheet" href="/css/style.css" />
+        <link rel="stylesheet" href="/bower_components/swipebox/src/css/swipebox.css">
     </head>
     <body>
     <div data-role="page" id="page-login">
@@ -39,27 +43,22 @@
     </div>
     <div data-role="page" id="page-home">
         <div data-role="content">
-<div class="ui-grid-solo" style="position: relative;height:400px">
- <canvas id="layer1" width="400px" height="600px" class="tree-canvas"
-   style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
- <canvas id="layer2" width="400px" height="600px" class="tree-canvas"
-   style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
-</div>
+            <div class="ui-grid-solo" style="position: relative;height:400px">
+                <canvas id="layer1" width="400px" height="600px" class="tree-canvas"
+                style="position: absolute; left: 0; top: 0; z-index: 0;"></canvas>
+                <canvas id="layer2" width="400px" height="600px" class="tree-canvas"
+                style="position: absolute; left: 0; top: 0; z-index: 1;"></canvas>
+            </div>
             <input type="file" id="take-picture" accept="image/*" capture="camera" name="pic">
         </div>
         <div data-role="footer" data-position="fixed" class="ui-bar">
             <a id="triggerCamera" href="#" class="ui-btn ui-icon-camera ui-btn-icon-right footer-btn">Give Me a Smile!</a>
-        </div>
-    </div>
-    <div data-role="page" id="page-uploading">
-        <div data-role="content">
-            <a id="triggerCamera" href="#" class="ui-btn ui-icon-camera ui-btn-icon-right">Take Me To Heaven</a>
+            <a id="openGallery" href="#page-preview" class="ui-btn ui-icon-grid ui-btn-icon-right footer-btn">Show My Smiles!</a>
         </div>
     </div>
     <div data-role="page" id="page-preview">
         <div data-role="content">
-            <div class="ui-grid-solo tree-area">
-            </div>
+            <div class="galleria gallery"></div>
             <a id="triggerCamera" href="#" class="ui-btn ui-icon-camera ui-btn-icon-right">Take Me To Heaven</a>
         </div>
     </div>

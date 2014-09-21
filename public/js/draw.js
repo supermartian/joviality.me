@@ -37,18 +37,3 @@ var drawTree = function(tree) {
         context2.drawImage(leaves[tree.leaves[i].style], tree.leaves[i].x, tree.leaves[i].y, tree.leaves[i].scale * leaves[i].width, tree.leaves[i].scale * leaves[i].height);
     }
 };
-
-var tree = new Branch({x:200, y:600}, {x:200, y:500});
-tree.thick = 0.4;
-
-drawTree(tree);
-
-canvas2.addEventListener("mousedown", getPosition, false);
-
-function getPosition(event)
-{
-    canvas2.width = canvas2.width;
-    canvas1.width = canvas1.width;
-    tree.grow(tree, true, true);
-    drawTree(tree);
-}

@@ -5,6 +5,47 @@
  * Distributed under terms of the MIT license.
  */
 
+var gallery = [];
+var user = {};
+
+function refreshPage(url) {
+  $.mobile.changePage(
+    url,
+    {
+      allowSamePageTransition : true,
+      transition              : 'none',
+      showLoadMsg             : false
+    }
+  );
+};
+
+$('.galleria').on('pagebeforeshow', function() {
+});
+
+$(document).on('pagebeforeshow', '#page-home', function() {
+    var getUser = function() {
+        $.ajax({
+            type: "GET",
+            url: "/user/"+$.cookie('user'),
+            success: function(data) {
+                user = data;
+
+                var tree = new Branch({x:200, y:600}, {x:200, y:500});
+                tree.thick = 0.4;
+                tree.growLeaf(tree);
+                for (var i = 0; i < user.faces.length; i++) {
+                    for (var j = 0; j < user.faces[i].smileRate/10; j++) {
+                        tree.grow(tree, true, true);
+                    }
+                }
+                drawTree(tree);
+            }
+        });
+    };
+
+    getUser();
+});
+
 $(document).on('pagebeforeshow', function() {
     var login = function(mobile) {
         var nextjump;
@@ -24,6 +65,8 @@ $(document).on('pagebeforeshow', function() {
             dataType: 'json',
             success: function(data) {
                 $.mobile.navigate(nextjump);
+                user = data;
+                $.cookie('user', user._id);
             }
         });
     };
@@ -59,6 +102,7 @@ $(document).on('pagebeforeshow', function() {
             dataType: 'json',
             success: function(data) {
                 $.mobile.navigate(nextjump);
+                $.cookie('user', data._id);
             }
         });
     };
@@ -85,12 +129,19 @@ $(document).on('pagebeforeshow', function() {
             contentType: false, // Set content type to false as jQuery will tell the server its a query string request
             success: function(data, textStatus, jqXHR) {
                 $.mobile.loading('hide');
-                alert(data.smileRate);
+                refreshPage('#page-home');
             }
         });
     });
 
     $('#triggerCamera').click(function(ev) {
         $('#take-picture').trigger('click');
+    });
+
+    $('#openGallery').click(function(ev) {
+        Galleria.loadTheme('/js/galleria/themes/classic/galleria.classic.min.js');
+        Galleria.run('.galleria', {
+            dataSource: gallery
+        });
     });
 });
