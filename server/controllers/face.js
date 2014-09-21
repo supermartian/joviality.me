@@ -49,7 +49,7 @@ exports.upload = function(req, res) {
                         return;
                     }
 
-                    if (result.face.length === 0) {
+                    if (result.faces.length === 0) {
                         res.status(500).jsonp({error: 'No faces'});
                         return;
                     }
@@ -70,9 +70,13 @@ exports.upload = function(req, res) {
                         }
 
                         User.findById(user._id, function(err, u) {
-                            if (err) {
+                            if (err || u === undefined) {
                                 res.status(500).jsonp({error: 'deeeep shit'});
                                 return;
+                            }
+
+                            if (u.faces === undefined) {
+                                u.faces = [];
                             }
 
                             u.faces.push(newFace._id);
