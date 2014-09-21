@@ -57,3 +57,18 @@ exports.register = function(req, res) {
         });
     });
 };
+
+var populateQuery = [{path:'faces'}];
+
+exports.getOne = function(req, res) {
+    var userId = req.params.userId;
+    User.findOne({_id: userId}).populate(populateQuery).exec(function(err, user) {
+        if (err) {
+            return res.jsonp(500, {
+                error: 'Cannot list the classes'
+            });
+        }
+
+        res.jsonp(user);
+    });
+};
