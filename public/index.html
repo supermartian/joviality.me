@@ -1,14 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <meta charset="utf-8" />
-        <title>index</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Joviality</title>
+        <!-- Bootstrap -->
+        <link href="/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/signin.css" rel="stylesheet">
     </head>
     <body>
-        <form action="face" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" accept="image/*" capture="camera">
-            <input type="submit" value="Submit">
-        </form>
+        <div class="container">
+            <form class="form-signin" role="form">
+                <h2 class="form-signin-heading">Please sign in</h2>
+                <input type="email" class="form-control" placeholder="Email address" required autofocus>
+                <input type="password" class="form-control" placeholder="Password" required>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            </form>
+        </div> <!-- /container -->
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     </body>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
 </html>

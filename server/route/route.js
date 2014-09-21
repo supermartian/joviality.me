@@ -16,10 +16,12 @@ module.exports = function(app) {
     app.route('/face/:fileId')
         .get(face.get);
 
-    app.route('/user/:userId')
-        .get(user.getOne);
     app.route('/user/login')
         .post(user.login);
+    app.route('/user/all')
+        .get(user.all);
     app.route('/user/register')
         .post(user.register);
+    app.route('/user/:userId')
+        .get(user.getOne);
 };

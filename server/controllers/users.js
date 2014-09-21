@@ -71,3 +71,15 @@ exports.getOne = function(req, res) {
         res.jsonp(user);
     });
 };
+
+exports.all = function(req, res) {
+    User.find().populate(populateQuery).exec(function(err, users) {
+        if (err) {
+            return res.jsonp(500, {
+                error: 'Cannot get one user'
+            });
+        }
+
+        res.jsonp(users);
+    });
+}

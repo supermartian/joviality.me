@@ -32,7 +32,7 @@ exports.upload = function(req, res) {
         });
         file.pipe(fstream);
         fstream.on('close', function(file) {
-            facepp.detect('http://104.131.60.223:3000/face/'+file._id, function(err, faceresp) {
+            facepp.detect('http://joviality.me/face/'+file._id, function(err, faceresp) {
                 if (err) {
                     res.send('shit');
                     return;
@@ -49,10 +49,11 @@ exports.upload = function(req, res) {
                         return;
                     }
 
-                    if (result.faces.length === 0) {
+                    if (result.face === undefined || result.face.length === 0) {
                         res.status(500).jsonp({error: 'No faces'});
                         return;
                     }
+                    console.log(resjson);
 
                     var newFace = new Face();
                     newFace.user = user._id;
